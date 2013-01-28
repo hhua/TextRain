@@ -69,7 +69,7 @@ void draw() {
   
   m_sec = millis();
   if(m_sec > nextAddTime){
-    //println("1");
+    println("1");
     nextAddTime += 3000;
     line_index++;
     if(line_index > poemLines.length-1){
@@ -108,8 +108,8 @@ void addNewLetters(){
   int n = s.length();
   for(int j = 0; j<n; j++, i++){
     char c = s.charAt(j);
-    float x = random(width * ((float)i/(n+1)) + 1, width * ((float)(i+1)/(n+1)));
-    float y = random(initialLetterYPosition, initialLetterYPosition+10);
+    float x = random(1, width-1);
+    float y = random(initialLetterYPosition, initialLetterYPosition+30);
     tempLetters[i] = new TextRainLetter(c,x,y);
   }
   
@@ -187,16 +187,16 @@ class TextRainLetter {
     // to achieve improved contrast for the typography. 
     
     if( y > height-20){
-      y = random(initialLetterYPosition, initialLetterYPosition+10);
-      x = random(1, 255);
+      y = random(initialLetterYPosition, initialLetterYPosition+30);
+      x = random(1, width-1);
     }
     
-    fill(0,0,0);
+    fill(random(256),random(256),random(256));
     text (""+c, x+1,y+1); 
     text (""+c, x-1,y+1); 
     text (""+c, x+1,y-1); 
     text (""+c, x-1,y-1); 
-    fill(random(256),random(256),random(256));
+    fill(255,255,255);
     text (""+c, x,y);
   }
 }
